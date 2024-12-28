@@ -7,11 +7,14 @@ import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-do
 const Home = React.lazy(() => import("./components/Home"))
 const DokterList = React.lazy(() => import("./components/Dokter/List"))
 const DokterCreate = React.lazy(() => import("./components/Dokter/Create"))
-//const DokterEdit = React.lazy(() => import("./components/Dokter/Edit"))
-// const ProdiList = React.lazy(() => import("./components/Prodi/List"))
-// const ProdiCreate = React.lazy(() => import("./components/Prodi/Create"))
-// const ProdiEdit = React.lazy(() => import("./components/Prodi/Edit"))
-// const MhsList = React.lazy(() => import("./components/Mahasiswa/List"))
+const DokterEdit = React.lazy(() => import("./components/Dokter/Edit"))
+const PasienList = React.lazy(() => import("./components/Pasien/List"))
+const ObatList = React.lazy(() => import("./components/Obat/List"))
+const ObatCreate = React.lazy(() => import("./components/Obat/Create"))
+const ObatEdit = React.lazy(() => import("./components/Obat/Edit"))
+const RekamMedisList = React.lazy(() => import("./components/RekamMedis/List"))
+// const PasienCreate = React.lazy(() => import("./components/Prodi/Create"))
+// const PasienEdit = React.lazy(() => import("./components/Prodi/Edit"))
 // const MhsCreate = React.lazy(() => import("./components/Mahasiswa/Create"));
 //const Login = React.lazy(() => import("./components/Login"));
 
@@ -54,7 +57,12 @@ const App = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/mahasiswa" className="nav-link">
+                <NavLink to="/obat" className="nav-link">
+                  Obat
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/rekamMedis" className="nav-link">
                   Rekam Medis
                 </NavLink>
               </li>
@@ -79,10 +87,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/dokter" element={<DokterList />} />
         <Route path="/dokter/create" element={<DokterCreate />} />
-        {/* <Route path="/dokter/edit/:id" element={<DokterEdit />} />
-        <Route path="/pasien" element={<ProdiList />} />
-        <Route path="/pasien/create" element={<ProdiCreate />} />
-        <Route path="/pasien/edit/:id" element={<ProdiEdit />} /> */}
+        <Route path="/dokter/edit/:id" element={<DokterEdit />} />
+        <Route path="/pasien" element={<PasienList />} />
+        <Route path="/obat" element={<ObatList />} />
+        <Route path="/obat/create" element={<ObatCreate />} />
+        <Route path="/obat/edit/:id" element={<ObatEdit />} />
+        <Route path="/rekamMedis" element={<RekamMedisList />} />
       </Routes>
     </Router>
   );

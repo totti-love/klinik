@@ -8,7 +8,7 @@ export default function CreateDokter() {
   const [nama, setNama] = useState("");
   // Inisialisasi state untuk menyimpan ID fakultas yang dipilih
   const [keahlian, setKeahlian] = useState("");
-  const [jenisKelamin, setJenisKelamin] = useState("");
+  const [jenis_kelamin, setJenisKelamin] = useState("");
   const [error, setError] = useState("");
   // Inisialisasi state untuk menyimpan pesan sukses
   const [success, setSuccess] = useState("");
@@ -28,7 +28,7 @@ export default function CreateDokter() {
       setError("Keahlian are required"); 
       return; 
     }
-    if (jenisKelamin.trim() === "") {
+    if (jenis_kelamin.trim() === "") {
       setError("Jenis Kelamin are required"); 
       return; 
     }
@@ -40,7 +40,7 @@ export default function CreateDokter() {
         {
           nama: nama, // Data nama 
           keahlian: keahlian,
-          jenisKelamin: jenisKelamin,
+          jenis_kelamin: jenis_kelamin,
         }
       );
 
@@ -101,8 +101,8 @@ export default function CreateDokter() {
           <input
             type="text"
             className="form-control"
-            id="jenisKelamin"
-            value={jenisKelamin} // Nilai input disimpan di state jenisKelamin
+            id="jenis_kelamin"
+            value={jenis_kelamin} // Nilai input disimpan di state jenisKelamin
             onChange={(e) => setJenisKelamin(e.target.value)} // Update state saat input berubah
             placeholder="Enter Jenis Kelamin" // Placeholder teks untuk input
           />
