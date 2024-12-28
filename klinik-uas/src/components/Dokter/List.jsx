@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2"; //import SweerAlert2
+
 export default function List() {
   //state dokter
   const [dokter, setDokter] = useState([]);
@@ -27,7 +28,7 @@ export default function List() {
       if (result.isConfirmed) {
         // Lakukan penghapusan jika dikonfirmasi
         axios
-          .delete(`https://academic-mi5a.vercel.app/api/api/dokter/${id}`)
+          .delete(`https://project-uas-eight.vercel.app/api/api/dokter/${id}`)
           .then((response) => {
             // Hapus dokter dari state setelah sukses dihapus dari server
             setDokter(dokter.filter((f) => f.id !== id));
@@ -57,17 +58,17 @@ export default function List() {
         <thead>
           <tr>
             <th>Nama</th>
-            <th>Singkatan</th>
-            <th>Dekan</th>
-            <th>#</th>
+            <th>Keahlian</th>
+            <th>Jenis Kelamin</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           {dokter.map((data) => (
             <tr key={data.id}>
               <td>{data.nama}</td>
-              <td>{data.singkatan}</td>
-              <td>{data.dekan}</td>
+              <td>{data.keahlian}</td>
+              <td>{data.jenis_kelamin}</td>
               <td>
                 <NavLink
                   to={`/dokter/edit/${data.id}`}

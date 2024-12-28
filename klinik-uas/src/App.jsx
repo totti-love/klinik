@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-do
 
 const Home = React.lazy(() => import("./components/Home"))
 const DokterList = React.lazy(() => import("./components/Dokter/List"))
-// const DokterCreate = React.lazy(() => import("./components/Dokter/Create"))
-// const DokterEdit = React.lazy(() => import("./components/Dokter/Edit"))
+const DokterCreate = React.lazy(() => import("./components/Dokter/Create"))
+//const DokterEdit = React.lazy(() => import("./components/Dokter/Edit"))
 // const ProdiList = React.lazy(() => import("./components/Prodi/List"))
 // const ProdiCreate = React.lazy(() => import("./components/Prodi/Create"))
 // const ProdiEdit = React.lazy(() => import("./components/Prodi/Edit"))
@@ -78,13 +78,11 @@ const App = () => {
         <Route path="/logout" element={<Logout />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/dokter" element={<DokterList />} />
-        {/* <Route path="/dokter/create" element={<DokterCreate />} />
-        <Route path="/dokter/edit/:id" element={<DokterEdit />} />
-        <Route path="/prodi" element={<ProdiList />} />
-        <Route path="/prodi/create" element={<ProdiCreate />} />
-        <Route path="/prodi/edit/:id" element={<ProdiEdit />} />
-        <Route path="/mahasiswa" element={<MhsList />} />
-        <Route path="/mahasiswa/create" element={<MhsCreate />} /> */}
+        <Route path="/dokter/create" element={<DokterCreate />} />
+        {/* <Route path="/dokter/edit/:id" element={<DokterEdit />} />
+        <Route path="/pasien" element={<ProdiList />} />
+        <Route path="/pasien/create" element={<ProdiCreate />} />
+        <Route path="/pasien/edit/:id" element={<ProdiEdit />} /> */}
       </Routes>
     </Router>
   );
