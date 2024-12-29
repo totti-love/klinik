@@ -66,7 +66,7 @@ export default function List() {
               <tr key={data.id}>
                 <td className="text-center">{data.kode}</td>
                 <td className="text-center">{data.tanggal}</td>
-                <td className="text-center">{data.kunjungan.nama}</td>
+                <td className="text-center">{data.kunjungan_id}</td>
                 <td className="text-center">{data.obat.nama}</td>
                 <td className="text-center">
                   <NavLink
