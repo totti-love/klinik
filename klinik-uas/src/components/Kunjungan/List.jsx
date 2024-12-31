@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2"; //import SweerAlert2
+
 export default function List() {
-  //state obat
-  const [obat, setObat] = useState([]);
+  //state pasien
+  const [kunjungan, setKunjungan] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://project-uas-eight.vercel.app/api/api/obat")
+    axios.get("https://project-uas-eight.vercel.app/api/api/kunjungan")
       .then((response) => {
-        console.log(response);
-        setObat(response.data.data);
-      });
+      console.log(response);
+      setKunjungan(response.data.data);
+    });
   }, []);
 
   const handleDelete = (id, nama) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this! obat: ${nama}",
+      text: `You won't be able to revert this! dokter: ${nama}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -28,10 +28,10 @@ export default function List() {
       if (result.isConfirmed) {
         // Lakukan penghapusan jika dikonfirmasi
         axios
-          .delete(`https://project-uas-eight.vercel.app/api/api/obat/${id}`)
+          .delete(`https://project-uas-eight.vercel.app/api/api/kunjungan/${id}`)
           .then((response) => {
-            // Hapus obat dari state setelah sukses dihapus dari server
-            setObat(obat.filter((o) => o.id !== id));
+            // Hapus dokter dari state setelah sukses dihapus dari server
+            setKunjungan(pasien.filter((f) => f.id !== id));
             // Tampilkan notifikasi sukses
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           })
@@ -49,29 +49,33 @@ export default function List() {
 
   return (
     <>
-      <h2 className="mt-3 mb-3 ms-3">List Data obat</h2>
-      <NavLink to="/obat/create" className="btn btn-primary mb-3 ms-3">
+      <h2 className="mt-3 mb-3 ms-3">List Data Kunjungan</h2>
+      <NavLink to="/kunjungan/create" className="btn btn-primary mb-3 ms-3">
         Tambah
       </NavLink>
 
       <table className="table mt-3">
         <thead>
           <tr className="text-center">
-            <th>Kode Obat</th>
-            <th>Nama Obat</th>
-            <th>Jumlah</th>
+            <th>Kode</th>
+            <th>Tanggal Kunjungan</th>
+            <th>Keluhan</th>
+            <th>Pasien</th>
+            <th>Dokter</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
-          {obat.map((data) => (
+          {kunjungan.map((data) => (
             <tr className="text-center" key={data.id}>
               <td>{data.kode}</td>
-              <td>{data.nama}</td>
-              <td>{data.jumlah}</td>
+              <td>{data.tanggal}</td>
+              <td>{data.keluhan}</td>
+              <td>{data.pasien_id}</td>
+              <td>{data.dokter_id}</td>
               <td>
                 <NavLink
-                  to={`/obat/edit/${data.id}`}
+                  to={`/kunjungan/edit/${data.id}`}
                   className="btn btn-warning me-2"
                 >
                   Edit

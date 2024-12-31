@@ -14,10 +14,12 @@ const PasienEdit = React.lazy(() => import("./components/Pasien/Edit"))
 const ObatList = React.lazy(() => import("./components/Obat/List"))
 const ObatCreate = React.lazy(() => import("./components/Obat/Create"))
 const ObatEdit = React.lazy(() => import("./components/Obat/Edit"))
+const KunjunganList = React.lazy(() => import("./components/Kunjungan/List"))
+const KunjunganCreate = React.lazy(() => import("./components/Kunjungan/Create"))
 const RekamMedisList = React.lazy(() => import("./components/RekamMedis/List"))
-// const PasienCreate = React.lazy(() => import("./components/Prodi/Create"))
-// const PasienEdit = React.lazy(() => import("./components/Prodi/Edit"))
-// const MhsCreate = React.lazy(() => import("./components/Mahasiswa/Create"));
+const RekamMedisCreate = React.lazy(() => import("./components/RekamMedis/Create"))
+const RekamMedisEdit = React.lazy(() => import("./components/RekamMedis/Edit"))
+
 //const Login = React.lazy(() => import("./components/Login"));
 
 const App = () => {
@@ -59,6 +61,11 @@ const App = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
+                <NavLink to="/kunjungan" className="nav-link">
+                  Kunjungan
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink to="/obat" className="nav-link">
                   Obat
                 </NavLink>
@@ -93,10 +100,14 @@ const App = () => {
         <Route path="/pasien" element={<PasienList />} />
         <Route path="/pasien/create" element={<PasienCreate />} />
         <Route path="/pasien/edit/:id" element={<PasienEdit />} />
+        <Route path="/kunjungan" element={<KunjunganList />} />
+        <Route path="/kunjungan/create" element={<KunjunganCreate />} />
         <Route path="/obat" element={<ObatList />} />
         <Route path="/obat/create" element={<ObatCreate />} />
         <Route path="/obat/edit/:id" element={<ObatEdit />} />
         <Route path="/rekamMedis" element={<RekamMedisList />} />
+        <Route path="/rekamMedis/create" element={<RekamMedisCreate />} />
+        <Route path="/rekamMedis/edit/:id" element={<RekamMedisEdit />} />
       </Routes>
     </Router>
   );

@@ -141,7 +141,7 @@ export default function CreateDokter() {
             className="form-control"
             id="no_telp"
             value={no_telp} // Nilai input disimpan di state jenisKelamin
-            onChange={(e) => setJenisKelamin(e.target.value)} // Update state saat input berubah
+            onChange={(e) => setNoTelp(e.target.value)} // Update state saat input berubah
             placeholder="Enter No Telp" // Placeholder teks untuk input
           />
         </div>
