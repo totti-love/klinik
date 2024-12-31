@@ -9,11 +9,29 @@ export default function CreateKunjungan() {
   // Inisialisasi state untuk menyimpan ID fakultas yang dipilih
   const [tanggal, setTanggal] = useState("");
   const [keluhan, setKeluhan] = useState("");
-  const [pasien_id, setPasien] = useState("");
-  const [dokter_id, setDokter] = useState("");
+  const [pasien_id, setPasienId] = useState("");
+  const [pasienList, setPasienList] = useState("");
+  const [dokter_id, setDokterId] = useState("");
+  const [dokterList, setDokterList] = useState("");
   const [error, setError] = useState("");
   // Inisialisasi state untuk menyimpan pesan sukses
   const [success, setSuccess] = useState("");
+
+  // Mengambil daftar fakultas dari API saat komponen dimuat
+  useEffect(() => {
+    const fetchPasien = async () => {
+      try {
+        const response = await axios.get(
+          "https://project-uas-eight.vercel.app/api/api/pasien"
+        );
+        setPasienList(response.data.data); // Simpan data fakultas ke dalam state
+      } catch (error) {
+        setError("Failed to fetch pasien data");
+      }
+    };
+
+    fetchPasien(); // Panggil fungsi untuk mengambil data fakultas
+  }, []); // Kosongkan array dependensi agar hanya dijalankan sekali saat komponen dimuat
 
   // Fungsi yang akan dijalankan saat form disubmit
   const handleSubmit = async (e) => {
@@ -32,14 +50,6 @@ export default function CreateKunjungan() {
     }
     if (keluhan.trim() === "") {
       setError("Jenis Kelamin are required"); 
-      return; 
-    }
-    if (pasien_id.trim() === "") {
-      setError("Alamat are required"); 
-      return; 
-    }
-    if (dokter_id.trim() === "") {
-      setError("No Telp are required"); 
       return; 
     }
 
@@ -63,8 +73,8 @@ export default function CreateKunjungan() {
         setKode(""); // Kosongkan input form setelah sukses submit
         setTanggal("");
         setKeluhan("");
-        setPasien("");
-        setDokter("");
+        setPasienId("");
+        setDokterId("");
       } else {
         // Jika tidak berhasil, tampilkan pesan error
         setError("Gagal membuat data kunjungan!");
@@ -121,7 +131,24 @@ export default function CreateKunjungan() {
             placeholder="Enter Keluhan" // Placeholder teks untuk input
           />
         </div>
-        
+        <div className="mb-3">
+          <label className="form-label">Pasien</label>
+          {/* Dropdown untuk memilih pasien */}
+          <select
+            className="form-select"
+            id="pasien_id"
+            value={pasien_id} // Nilai dropdown disimpan di state pasienId
+            onChange={(e) => setPasienId(e.target.value)} // Update state saat pilihan berubah
+          >
+            <option value="">Select Pasien</option>
+            {pasienList.map((pasien) => (
+              <option key={pasien.id} value={pasien.id}>
+                {/* Set key dan value untuk masing-masing fakultas */}
+                {pasien.nama} {/* Nama fakultas sebagai teks di dropdown */}
+              </option>
+            ))}
+          </select>
+        </div>
         {/* Tombol submit dengan class bootstrap */}
         <button type="submit" className="btn btn-primary">
           Create
