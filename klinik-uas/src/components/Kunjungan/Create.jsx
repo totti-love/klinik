@@ -17,14 +17,14 @@ export default function CreateKunjungan() {
   // Inisialisasi state untuk menyimpan pesan sukses
   const [success, setSuccess] = useState("");
 
-  // Mengambil daftar fakultas dari API saat komponen dimuat
+  // Mengambil daftar pasien dari API saat komponen dimuat
   useEffect(() => {
     const fetchPasien = async () => {
       try {
         const response = await axios.get(
           "https://project-uas-eight.vercel.app/api/api/pasien"
         );
-        setPasienList(response.data.data); // Simpan data fakultas ke dalam state
+        setPasienList(response.data.data); // Simpan data pasien ke dalam state
       } catch (error) {
         setError("Failed to fetch pasien data");
       }
@@ -32,6 +32,22 @@ export default function CreateKunjungan() {
 
     fetchPasien(); // Panggil fungsi untuk mengambil data fakultas
   }, []); // Kosongkan array dependensi agar hanya dijalankan sekali saat komponen dimuat
+
+  // Mengambil daftar pasien dari API saat komponen dimuat
+  useEffect(() => {
+    const fetchDokter = async () => {
+      try {
+        const response = await axios.get(
+          "https://project-uas-eight.vercel.app/api/api/dokter"
+        );
+        setDokterList(response.data.data); // Simpan data dokter ke dalam state
+      } catch (error) {
+        setError("Failed to fetch pasien data");
+      }
+    };
+
+    fetchDokter(); // Panggil fungsi untuk mengambil data fakultas
+  }, []);
 
   // Fungsi yang akan dijalankan saat form disubmit
   const handleSubmit = async (e) => {

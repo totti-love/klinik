@@ -56,10 +56,10 @@ export default function Edit() {
 
   return (
     <div>
-      <h2>Edit Data Dokter</h2>  
+      <h2 className="mt-3 mb-3 ms-3">Edit Data Dokter</h2>  
       {error && <p className="text-danger">{error}</p>}  {/* Menampilkan pesan error jika ada */}
       <form onSubmit={handleSubmit}>  {/* Form untuk mengedit nama fakultas */}
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="nama" className="form-label">Nama Dokter</label>  {/* Label untuk input nama */}
           <input
             type="text"
@@ -70,7 +70,7 @@ export default function Edit() {
             required  // Input wajib diisi
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="keahlian" className="form-label">Keahlian</label>  {/* Label untuk input nama */}
           <input
             type="text"
@@ -81,7 +81,7 @@ export default function Edit() {
             required  // Input wajib diisi
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="jenis_kelamin" className="form-label">Jenis Kelamin</label>  {/* Label untuk input nama */}
           <input
             type="text"
@@ -92,7 +92,7 @@ export default function Edit() {
             required  // Input wajib diisi
           />
         </div>
-        <button type="submit" className="btn btn-primary">Simpan</button> 
+        <button type="submit" className="btn btn-secondary ms-3">Simpan</button> 
       </form>
     </div>
   );

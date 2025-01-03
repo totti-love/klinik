@@ -16,6 +16,7 @@ const ObatCreate = React.lazy(() => import("./components/Obat/Create"))
 const ObatEdit = React.lazy(() => import("./components/Obat/Edit"))
 const KunjunganList = React.lazy(() => import("./components/Kunjungan/List"))
 const KunjunganCreate = React.lazy(() => import("./components/Kunjungan/Create"))
+const KunjunganEdit = React.lazy(() => import("./components/Kunjungan/Edit"))
 const RekamMedisList = React.lazy(() => import("./components/RekamMedis/List"))
 const RekamMedisCreate = React.lazy(() => import("./components/RekamMedis/Create"))
 const RekamMedisEdit = React.lazy(() => import("./components/RekamMedis/Edit"))
@@ -102,6 +103,7 @@ const App = () => {
         <Route path="/pasien/edit/:id" element={<PasienEdit />} />
         <Route path="/kunjungan" element={<KunjunganList />} />
         <Route path="/kunjungan/create" element={<KunjunganCreate />} />
+        <Route path="/kunjungan/edit/:id" element={<KunjunganEdit />} />
         <Route path="/obat" element={<ObatList />} />
         <Route path="/obat/create" element={<ObatCreate />} />
         <Route path="/obat/edit/:id" element={<ObatEdit />} />

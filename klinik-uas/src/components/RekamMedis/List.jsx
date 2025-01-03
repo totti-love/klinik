@@ -46,15 +46,15 @@ export default function List() {
     };
     return (
       <>
-        <h2>List Rekam Medis</h2>
-                <NavLink to="/rekamMedis/create" className="btn btn-primary mb-3">
+        <h2 className="mt-3 mb-3 ms-3">List Rekam Medis</h2>
+                <NavLink to="/rekamMedis/create" className="btn btn-primary mb-3 ms-3">
                   Tambah
                 </NavLink>
 
-        <table className="table">
+        <table className="table mt-3">
           <thead>
-            <tr className="text-center">
-              <th>Kode</th>
+            <tr className="text-center font-weight-bolder opacity-5 bg-success text-white p-3">
+              <th >Kode</th>
               <th>Tanggal</th>
               <th>Kunjungan</th>
               <th>Obat</th>
@@ -63,12 +63,12 @@ export default function List() {
           </thead>
           <tbody>
             {rekamMedis.map((data) => (
-              <tr key={data.id}>
-                <td className="text-center">{data.kode}</td>
-                <td className="text-center">{data.tanggal}</td>
-                <td className="text-center">{data.kunjungan_id}</td>
-                <td className="text-center">{data.obat.nama}</td>
-                <td className="text-center">
+              <tr className="text-center" key={data.id}>
+                <td>{data.kode}</td>
+                <td>{data.tanggal}</td>
+                <td>{data.kunjungan_id}</td>
+                <td>{data.obat.nama}</td>
+                <td>
                   <NavLink
                   to={`/rekamMedis/edit/${data.id}`}
                   className="btn btn-warning me-2"

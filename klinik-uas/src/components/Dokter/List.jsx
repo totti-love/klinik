@@ -49,14 +49,14 @@ export default function List() {
 
   return (
     <>
-      <h2 className="mt-3 mb-3">List Data Dokter</h2>
-      <NavLink to="/dokter/create" className="btn btn-primary mb-3">
+      <h2 className="mt-3 mb-3 ms-3">List Data Dokter</h2>
+      <NavLink to="/dokter/create" className="btn btn-primary mb-3 ms-3">
         Tambah
       </NavLink>
 
       <table className="table mt-3">
         <thead>
-          <tr>
+          <tr className="text-center">
             <th>Nama</th>
             <th>Keahlian</th>
             <th>Jenis Kelamin</th>
@@ -65,14 +65,14 @@ export default function List() {
         </thead>
         <tbody>
           {dokter.map((data) => (
-            <tr key={data.id}>
+            <tr className="text-center" key={data.id}>
               <td>{data.nama}</td>
               <td>{data.keahlian}</td>
               <td>{data.jenis_kelamin}</td>
               <td>
                 <NavLink
                   to={`/dokter/edit/${data.id}`}
-                  className="btn btn-warning"
+                  className="btn btn-warning me-2"
                 >
                   Edit
                 </NavLink>
