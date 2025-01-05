@@ -81,7 +81,7 @@ export default function Edit() {
     e.preventDefault(); // Mencegah reload halaman saat form disubmit
     axios
       .put(`https://project-uas-eight.vercel.app/api/api/kunjungan/${id}`, { kode, tanggal, keluhan,
-        pasien_id : pasien, dokter_id : dokter}) // Mengirimkan request PATCH untuk mengupdate data prodi berdasarkan ID
+        pasien_id : pasien_id, dokter_id : dokter_id}) // Mengirimkan request PATCH untuk mengupdate data prodi berdasarkan ID
       .then((response) => {
         navigate("/kunjungan"); // Jika update berhasil, navigasi kembali ke halaman list prodi
       })
