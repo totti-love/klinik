@@ -10,7 +10,6 @@ export default function List() {
     axios
       .get("https://project-uas-eight.vercel.app/api/api/obat")
       .then((response) => {
-        console.log(response);
         setObat(response.data.data);
       });
   }, []);
