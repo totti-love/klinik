@@ -10,7 +10,6 @@ export default function List() {
   useEffect(() => {
     axios.get("https://project-uas-eight.vercel.app/api/api/kunjungan")
       .then((response) => {
-      console.log(response);
       setKunjungan(response.data.data);
     });
   }, []);

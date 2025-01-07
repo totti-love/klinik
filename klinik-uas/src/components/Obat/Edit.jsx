@@ -82,7 +82,7 @@ export default function Edit() {
           />
         </div>
         <div className="mb-3 ms-3">
-          <label htmlFor="jumlah" className="form-label">Jenis Kelamin</label>  {/* Label untuk input kode */}
+          <label htmlFor="jumlah" className="form-label">Jumlah</label>  {/* Label untuk input kode */}
           <input
             type="text"
             className="form-control"
