@@ -24,8 +24,9 @@ export default function Edit() {
         setKode(response.data.kode);
         setTanggal(response.data.tanggal);
         setKeluhan(response.data.keluhan); // Menyimpan nama prodi ke dalam state 'nama'
-        setPasienId(response.data.pasien_id.id); // Menyimpan ID fakultas ke dalam state 'fakultas'
-        setDokterId(response.data.dokter_id.id);
+        setPasienId(response.data.pasien_id); // Menyimpan ID fakultas ke dalam state 'fakultas'
+        /*console.log(response.data.pasien_id);*/
+        setDokterId(response.data.dokter_id);
       })
       .catch((error) => {
         console.error("Error fetching data:", error); // Menangani error jika request gagal
@@ -67,12 +68,12 @@ export default function Edit() {
   };
 
   // Menghandle perubahan dropdown fakultas
-  const handleFakultasChangePasien = (e) => {
+  const handleChangePasien = (e) => {
     setPasienId(e.target.value); // Mengubah state 'fakultas' sesuai dengan pilihan yang dipilih pengguna di dropdown
   };
 
   // Menghandle perubahan dropdown fakultas
-  const handleFakultasChangeDokter = (e) => {
+  const handleChangeDokter = (e) => {
     setDokterId(e.target.value); // Mengubah state 'fakultas' sesuai dengan pilihan yang dipilih pengguna di dropdown
   };
 
@@ -93,10 +94,10 @@ export default function Edit() {
 
   return (
     <div>
-      <h2>Edit Kunjungan Klinik</h2> {/* Menampilkan judul halaman */}
+      <h2 className="mt-3 mb-3 ms-3">Edit Kunjungan Klinik</h2> {/* Menampilkan judul halaman */}
       {error && <p className="text-danger">{error}</p>} {/* Menampilkan pesan error jika ada */}
       <form onSubmit={handleSubmit}> {/* Form untuk mengedit nama prodi */}
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="kode" className="form-label">
             Kode Kunjungan
           </label> {/* Label untuk input nama prodi */}
@@ -106,7 +107,7 @@ export default function Edit() {
             required // Input wajib diisi
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="tanggal" className="form-label">
             Tanggal Kunjungan
           </label> {/* Label untuk input nama prodi */}
@@ -116,7 +117,7 @@ export default function Edit() {
             required // Input wajib diisi
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="keluhan" className="form-label">
             Keluhan Pasien
           </label> {/* Label untuk input nama prodi */}
@@ -126,13 +127,13 @@ export default function Edit() {
             required // Input wajib diisi
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="pasien" className="form-label">
             Nama Pasien
           </label> {/* Label untuk dropdown pasien */}
           <select
             className="form-select" id="pasien_id" value={pasien_id} // Mengisi nilai dropdown dengan state 'pasien'
-            onChange={handleFakultasChangePasien} // Mengubah nilai dropdown saat pengguna memilih pasien
+            onChange={handleChangePasien} // Mengubah nilai dropdown saat pengguna memilih pasien
             required // Dropdown wajib dipilih
           >
             <option value="">Pilih Pasien</option> {/* Default option untuk dropdown */}
@@ -146,13 +147,13 @@ export default function Edit() {
             )}
           </select>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="dokter" className="form-label">
             Nama Dokter
           </label> {/* Label untuk dropdown dokter */}
           <select
             className="form-select" id="dokter_id" value={dokter_id} // Mengisi nilai dropdown dengan state 'dokter'
-            onChange={handleFakultasChangeDokter} // Mengubah nilai dropdown saat pengguna memilih dokter
+            onChange={handleChangeDokter} // Mengubah nilai dropdown saat pengguna memilih dokter
             required // Dropdown wajib dipilih
           >
             <option value="">Pilih Dokter</option> {/* Default option untuk dropdown */}
@@ -166,7 +167,7 @@ export default function Edit() {
             )}
           </select>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary ms-3">
           Simpan
         </button>{" "}
         {/* Tombol untuk submit form */}

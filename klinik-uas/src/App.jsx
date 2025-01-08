@@ -31,7 +31,7 @@ const App = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-success">
         <div className="container-fluid">
           <a className="navbar-brand text-white" href="#">
-            Navbar
+            <img src="medical-cross.png" alt="Brand Logo" style={{ height: '40px' }} />
           </a>
           <button
             className="navbar-toggler"
@@ -94,7 +94,7 @@ const App = () => {
       <Routes>
         {/* <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/logout" element={<Logout />} /> */}
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/dokter" element={<DokterList />} />
         <Route path="/dokter/create" element={<DokterCreate />} />
         <Route path="/dokter/edit/:id" element={<DokterEdit />} />

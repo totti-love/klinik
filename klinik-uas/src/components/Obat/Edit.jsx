@@ -92,7 +92,7 @@ export default function Edit() {
             required  // Input wajib diisi
           />
         </div>
-        <button type="submit" className="btn btn-secondary ms-3">Simpan</button> 
+        <button type="submit" className="btn btn-secondarysecondary ms-3">Simpan</button> 
       </form>
     </div>
   );

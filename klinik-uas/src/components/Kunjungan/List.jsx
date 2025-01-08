@@ -30,7 +30,7 @@ export default function List() {
           .delete(`https://project-uas-eight.vercel.app/api/api/kunjungan/${id}`)
           .then((response) => {
             // Hapus dokter dari state setelah sukses dihapus dari server
-            setKunjungan(pasien.filter((f) => f.id !== id));
+            setKunjungan(kunjungan.filter((f) => f.id !== id));
             // Tampilkan notifikasi sukses
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           })
@@ -70,8 +70,8 @@ export default function List() {
               <td>{data.kode}</td>
               <td>{data.tanggal}</td>
               <td>{data.keluhan}</td>
-              <td>{data.pasien_id}</td>
-              <td>{data.dokter_id}</td>
+              <td>{data.pasien.nama}</td>
+              <td>{data.dokter.nama}</td>
               <td>
                 <NavLink
                   to={`/kunjungan/edit/${data.id}`}

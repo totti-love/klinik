@@ -110,7 +110,7 @@ export default function CreateDokter() {
         {/* Tombol submit dengan class bootstrap */}
         <button type="submit" className="btn btn-primary">
           Create
-        </button>
+        </button>{" "}
       </form>
     </div>
   );

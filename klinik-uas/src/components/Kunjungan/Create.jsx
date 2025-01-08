@@ -10,9 +10,9 @@ export default function CreateKunjungan() {
   const [tanggal, setTanggal] = useState("");
   const [keluhan, setKeluhan] = useState("");
   const [pasien_id, setPasienId] = useState("");
-  const [pasienList, setPasienList] = useState("");
+  const [pasienList, setPasienList] = useState([]);
   const [dokter_id, setDokterId] = useState("");
-  const [dokterList, setDokterList] = useState("");
+  const [dokterList, setDokterList] = useState([]);
   const [error, setError] = useState("");
   // Inisialisasi state untuk menyimpan pesan sukses
   const [success, setSuccess] = useState("");
@@ -57,9 +57,10 @@ export default function CreateKunjungan() {
 
     // Validasi input: jika nama,keahlian,jenisKelamin kosong, set pesan error
     if (kode.trim() === "") {
-      setError("Nama Pasien are required"); // Set pesan error jika input kosong
-      return; // Stop eksekusi fungsi jika input tidak valid
+      setError("Kode are required"); 
+      return; 
     }
+
     if (tanggal.trim() === "") {
       setError("Tanggal Lahir are required"); 
       return; 
@@ -161,6 +162,24 @@ export default function CreateKunjungan() {
               <option key={pasien.id} value={pasien.id}>
                 {/* Set key dan value untuk masing-masing fakultas */}
                 {pasien.nama} {/* Nama fakultas sebagai teks di dropdown */}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Dokter</label>
+          {/* Dropdown untuk memilih pasien */}
+          <select
+            className="form-select"
+            id="dokter_id"
+            value={dokter_id} // Nilai dropdown disimpan di state pasienId
+            onChange={(e) => setDokterId(e.target.value)} // Update state saat pilihan berubah
+          >
+            <option value="">Select Pasien</option>
+            {dokterList.map((dokter) => (
+              <option key={dokter.id} value={dokter.id}>
+                {/* Set key dan value untuk masing-masing fakultas */}
+                {dokter.nama} {/* Nama fakultas sebagai teks di dropdown */}
               </option>
             ))}
           </select>

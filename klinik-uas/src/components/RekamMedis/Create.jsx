@@ -9,9 +9,9 @@ export default function CreateRekamMedis() {
   // Inisialisasi state untuk menyimpan ID fakultas yang dipilih
   const [tanggal, setTanggal] = useState("");
   const [kunjungan_id, setKunjunganId] = useState("");
-  const [kunjunganList, setKunjunganList] = useState("");
+  const [kunjunganList, setKunjunganList] = useState([]);
   const [obat_id, setObatId] = useState("");
-  const [obatList, setObatList] = useState("");
+  const [obatList, setObatList] = useState([]);
   const [error, setError] = useState("");
   // Inisialisasi state untuk menyimpan pesan sukses
   const [success, setSuccess] = useState("");
@@ -138,10 +138,10 @@ export default function CreateRekamMedis() {
             onChange={(e) => setKunjunganId(e.target.value)} // Update state saat pilihan berubah
           >
             <option value="">Pilih Kunjungan</option>
-            {kunjunganList.map((kunjungan) => (
+            {kunjunganList.map((kunjungan_id) => (
               <option key={kunjungan_id.id} value={kunjungan_id.id}>
                 {/* Set key dan value untuk masing-masing kunjungan */}
-                {kunjungan_id.nama} {/* Nama kunjungan sebagai teks di dropdown */}
+                {kunjungan_id.kode} {/* Nama kunjungan sebagai teks di dropdown */}
               </option>
             ))}
           </select>

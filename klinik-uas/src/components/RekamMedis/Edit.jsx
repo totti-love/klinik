@@ -88,7 +88,7 @@ export default function Edit() {
 
   return (
     <div>
-      <h2>Edit Data Rekam Medis</h2> {/* Menampilkan judul halaman */}
+      <h2 className="mt-3 mb-3 ms-3">Edit Data Rekam Medis</h2> {/* Menampilkan judul halaman */}
       {error && <p className="text-danger">{error}</p>} {/* Menampilkan pesan error jika ada */}
       <form onSubmit={handleSubmit}> {/* Form untuk mengedit nama prodi */}
         <div className="mb-3">
@@ -101,7 +101,7 @@ export default function Edit() {
             required // Input wajib diisi
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="tanggal" className="form-label">
             Tanggal Rekam Medis
           </label> {/* Label untuk input nama prodi */}
@@ -111,7 +111,7 @@ export default function Edit() {
             required // Input wajib diisi
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="kunjungan" className="form-label">
             Kunjungan Pasien
           </label> {/* Label untuk dropdown pasien */}
@@ -131,7 +131,7 @@ export default function Edit() {
             )}
           </select>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 ms-3">
           <label htmlFor="obat" className="form-label">
             Nama Obat
           </label> {/* Label untuk dropdown dokter */}
@@ -151,7 +151,7 @@ export default function Edit() {
             )}
           </select>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary ms-3">
           Simpan
         </button>{" "}
         {/* Tombol untuk submit form */}
