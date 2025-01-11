@@ -1,22 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 export default function Home() {
+  const [chartData, setChartData] = useState([]); // State untuk menyimpan data jumlah pasien
+  const [loading, setLoading] = useState(true); // State untuk loading indikator
+
+  useEffect(() => {
+    // Fungsi untuk mengambil data dari API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://project-uas-eight.vercel.app/api/api/pasien"); // Pastikan URL benar
+        console.log(response.data); // Debugging untuk memeriksa respons API
+        const data = Array.isArray(response.data) ? response.data : []; // Pastikan data adalah array
+
+        const maleCount = data.filter((item) => item.jenis_kelamin === "Laki-Laki").length;
+        const femaleCount = data.filter((item) => item.jenis_kelamin === "Perempuan").length;
+
+        setChartData([maleCount, femaleCount]);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const chartOptions = {
     chart: {
       type: "column",
     },
     title: {
-      text: "Dashboard Statistik Fakultas",
+      text: "Statistik Jenis Pasien",
     },
     xAxis: {
-      categories: [
-        "Laki-Laki",
-        "Perempuan",
-      ],
+      categories: ["Laki-Laki", "Perempuan"], // Menggunakan kategori Laki-Laki dan Perempuan
       title: {
-        text: "Data Pasien",
+        text: "Jenis Kelamin",
       },
     },
     yAxis: {
@@ -39,10 +62,14 @@ export default function Home() {
     series: [
       {
         name: "Jumlah Pasien",
-        data: [150, 200], // Data contoh jumlah pasien berdasarkan jenis kelamin
+        data: chartData, // Data jumlah pasien berdasarkan jenis kelamin
       },
     ],
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Tampilan loading saat data belum selesai diambil
+  }
 
   return (
     <div className="container">
@@ -50,7 +77,7 @@ export default function Home() {
         Selamat Datang Di Aplikasi Klinik Medisfera
       </h2>
       <p className="text-center">Kami siap membantu kebutuhan kesehatan Anda.</p>
-        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </div>
   );
 }

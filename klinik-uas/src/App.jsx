@@ -46,6 +46,17 @@ const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil 
           
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li>
+                {token ? ( // Tampilkan Logout jika token ada
+                  <NavLink className="nav-link" to="/logout">
+                    Logout
+                  </NavLink>
+                ) : (
+                  <NavLink className="nav-link" to="/login">
+                    Login
+                  </NavLink>
+                )}
+              </li> 
               <li className="nav-item">
                 <NavLink to="/home" className="nav-link">
                   Home
@@ -76,17 +87,6 @@ const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil 
                   Rekam Medis
                 </NavLink>
               </li>
-              <li>
-                {token ? ( // Tampilkan Logout jika token ada
-                  <NavLink className="nav-link" to="/logout">
-                    Logout
-                  </NavLink>
-                ) : (
-                  <NavLink className="nav-link" to="/login">
-                    Login
-                  </NavLink>
-                )}
-              </li> 
             </ul>
           </div>
         </div>
@@ -117,7 +117,7 @@ const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil 
       </Routes>
       </Suspense>
 
-      <div>&copy; 2024 Mahasiswa</div>
+
       </div>
     </Router>
   );
