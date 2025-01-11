@@ -3,10 +3,10 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 export default function Home() {
-  // Data grafik (contoh data, bisa diambil dari props atau API)
+  // Data grafik
   const pasien = [
-    { nama: "Kunjungan A", jenis_kelamin: 120 },
-    { nama: "Kunjungan B", jenis_kelamin: 150 },
+    { jenis_kelamin: "Laki-laki", jumlah: 120 },
+    { jenis_kelamin: "Perempuan", jumlah: 150 },
   ];
 
   // Konfigurasi Highcharts
@@ -15,7 +15,7 @@ export default function Home() {
       type: "column",
     },
     title: {
-      text: "Grafik Kunjungan Pasien Klinik Medisfera 2025",
+      text: "Grafik Kunjungan Pasien Berdasarkan Jenis Kelamin - 2025",
       align: "left",
     },
     subtitle: {
@@ -23,17 +23,17 @@ export default function Home() {
       align: "left",
     },
     xAxis: {
-      categories: pasien.map((row) => row.jenis_kelamin),
+      categories: pasien.map((row) => row.jenis_kelamin), // Kategori berdasarkan jenis kelamin
       crosshair: true,
     },
     yAxis: {
       min: 0,
       title: {
-        text: "1000 metric tons (MT)",
+        text: "Jumlah Pasien",
       },
     },
     tooltip: {
-      valueSuffix: " (1000 MT)",
+      valueSuffix: " pasien",
     },
     plotOptions: {
       column: {
@@ -43,8 +43,8 @@ export default function Home() {
     },
     series: [
       {
-        name: "Pasien",
-        data: pasien.map((row) => row.jenis_kelamin),
+        name: "Jenis Kelamin",
+        data: pasien.map((row) => row.jumlah), // Data jumlah pasien
       },
     ],
   };
