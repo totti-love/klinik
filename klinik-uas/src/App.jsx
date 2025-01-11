@@ -1,8 +1,8 @@
 import React, { Suspense, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom";
-
-//import ProtectedRoute from "./components/ProtectedRoute"; // ProtectedRoute Component
-//import Logout from "./components/Logout";
+import Loader from "./components/Loader"; // Loader Component
+import ProtectedRoute from "./components/ProtectedRoute"; // ProtectedRoute Component
+import Logout from "./components/Logout";
 
 const Home = React.lazy(() => import("./components/Home"))
 const DokterList = React.lazy(() => import("./components/Dokter/List"))
@@ -20,11 +20,10 @@ const KunjunganEdit = React.lazy(() => import("./components/Kunjungan/Edit"))
 const RekamMedisList = React.lazy(() => import("./components/RekamMedis/List"))
 const RekamMedisCreate = React.lazy(() => import("./components/RekamMedis/Create"))
 const RekamMedisEdit = React.lazy(() => import("./components/RekamMedis/Edit"))
-
-//const Login = React.lazy(() => import("./components/Login"));
+const Login = React.lazy(() => import("./components/Login"));
 
 const App = () => {
-  //const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil token dari localStorage
+const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil token dari localStorage
 
   return (
     <Router>
@@ -44,6 +43,7 @@ const App = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+          
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -76,7 +76,7 @@ const App = () => {
                   Rekam Medis
                 </NavLink>
               </li>
-              {/* <li>
+              <li>
                 {token ? ( // Tampilkan Logout jika token ada
                   <NavLink className="nav-link" to="/logout">
                     Logout
@@ -86,31 +86,39 @@ const App = () => {
                     Login
                   </NavLink>
                 )}
-              </li> */}
+              </li> 
             </ul>
           </div>
         </div>
       </nav>
+
+      <div className="container">
+        <Suspense fallback={<Loader />}>
+          {/* Suspense untuk fallback saat loading */}
       <Routes>
-        {/* <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/logout" element={<Logout />} /> */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/dokter" element={<DokterList />} />
-        <Route path="/dokter/create" element={<DokterCreate />} />
-        <Route path="/dokter/edit/:id" element={<DokterEdit />} />
-        <Route path="/pasien" element={<PasienList />} />
-        <Route path="/pasien/create" element={<PasienCreate />} />
-        <Route path="/pasien/edit/:id" element={<PasienEdit />} />
-        <Route path="/kunjungan" element={<KunjunganList />} />
-        <Route path="/kunjungan/create" element={<KunjunganCreate />} />
-        <Route path="/kunjungan/edit/:id" element={<KunjunganEdit />} />
-        <Route path="/obat" element={<ObatList />} />
-        <Route path="/obat/create" element={<ObatCreate />} />
-        <Route path="/obat/edit/:id" element={<ObatEdit />} />
-        <Route path="/rekamMedis" element={<RekamMedisList />} />
-        <Route path="/rekamMedis/create" element={<RekamMedisCreate />} />
-        <Route path="/rekamMedis/edit/:id" element={<RekamMedisEdit />} />
+        <Route path="/home" element={<Home />} /> {/* Route ke halaman Home */}
+        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/logout" element={<Logout />} /> 
+        <Route path="/dokter" element={<ProtectedRoute><DokterList /></ProtectedRoute>} />
+        <Route path="/dokter/create" element={<ProtectedRoute><DokterCreate /></ProtectedRoute>} />
+        <Route path="/dokter/edit/:id" element={<ProtectedRoute> <DokterEdit /></ProtectedRoute>} />
+        <Route path="/pasien" element={<ProtectedRoute><PasienList /></ProtectedRoute>} />
+        <Route path="/pasien/create" element={<ProtectedRoute><PasienCreate /></ProtectedRoute>} />
+        <Route path="/pasien/edit/:id" element={<ProtectedRoute><PasienEdit /></ProtectedRoute>} />
+        <Route path="/kunjungan" element={<ProtectedRoute><KunjunganList /></ProtectedRoute>} />
+        <Route path="/kunjungan/create" element={<ProtectedRoute><KunjunganCreate /></ProtectedRoute>} />
+        <Route path="/kunjungan/edit/:id" element={<ProtectedRoute><KunjunganEdit /></ProtectedRoute>} />
+        <Route path="/obat" element={<ProtectedRoute><ObatList /></ProtectedRoute>} />
+        <Route path="/obat/create" element={<ProtectedRoute><ObatCreate /></ProtectedRoute>} />
+        <Route path="/obat/edit/:id" element={<ProtectedRoute><ObatEdit /></ProtectedRoute>} />
+        <Route path="/rekamMedis" element={<ProtectedRoute><RekamMedisList /></ProtectedRoute>} />
+        <Route path="/rekamMedis/create" element={<ProtectedRoute><RekamMedisCreate /></ProtectedRoute>} />
+        <Route path="/rekamMedis/edit/:id" element={<ProtectedRoute><RekamMedisEdit /></ProtectedRoute>} />
       </Routes>
+      </Suspense>
+
+      <div>&copy; 2024 Mahasiswa</div>
+      </div>
     </Router>
   );
 }

@@ -3,48 +3,43 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 export default function Home() {
-  // Data grafik
-  const pasien = [
-    { jenis_kelamin: "Laki-laki", jumlah: 120 },
-    { jenis_kelamin: "Perempuan", jumlah: 150 },
-  ];
-
-  // Konfigurasi Highcharts
-  const options = {
+  const chartOptions = {
     chart: {
       type: "column",
     },
     title: {
-      text: "Grafik Kunjungan Pasien Berdasarkan Jenis Kelamin - 2025",
-      align: "left",
-    },
-    subtitle: {
-      text: "Source: Klinik Medisfera App",
-      align: "left",
+      text: "Dashboard Statistik Fakultas",
     },
     xAxis: {
-      categories: pasien.map((row) => row.jenis_kelamin), // Kategori berdasarkan jenis kelamin
-      crosshair: true,
+      categories: [
+        "Laki-Laki",
+        "Perempuan",
+      ],
+      title: {
+        text: "Data Pasien",
+      },
     },
     yAxis: {
       min: 0,
       title: {
         text: "Jumlah Pasien",
+        align: "high",
       },
-    },
-    tooltip: {
-      valueSuffix: " pasien",
+      labels: {
+        overflow: "justify",
+      },
     },
     plotOptions: {
       column: {
-        pointPadding: 0.2,
-        borderWidth: 0,
+        dataLabels: {
+          enabled: true,
+        },
       },
     },
     series: [
       {
-        name: "Jenis Kelamin",
-        data: pasien.map((row) => row.jumlah), // Data jumlah pasien
+        name: "Jumlah Pasien",
+        data: [150, 200], // Data contoh jumlah pasien berdasarkan jenis kelamin
       },
     ],
   };
@@ -55,11 +50,7 @@ export default function Home() {
         Selamat Datang Di Aplikasi Klinik Medisfera
       </h2>
       <p className="text-center">Kami siap membantu kebutuhan kesehatan Anda.</p>
-
-      {/* Grafik Highcharts */}
-      <div className="mt-5">
-        <HighchartsReact highcharts={Highcharts} options={options} />
-      </div>
+        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </div>
   );
 }
