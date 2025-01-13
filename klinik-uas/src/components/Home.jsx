@@ -8,16 +8,15 @@ export default function Home() {
   const [loading, setLoading] = useState(true); // State untuk loading indikator
 
   useEffect(() => {
-    // Fungsi untuk mengambil data dari API
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://project-uas-eight.vercel.app/api/api/pasien"); // Pastikan URL benar
+        const response = await axios.get("https://project-uas-eight.vercel.app/api/api/pasien");
         console.log(response.data); // Debugging untuk memeriksa respons API
-        const data = Array.isArray(response.data) ? response.data : []; // Pastikan data adalah array
-
-        const maleCount = data.filter((item) => item.jenis_kelamin === "Laki-Laki").length;
-        const femaleCount = data.filter((item) => item.jenis_kelamin === "Perempuan").length;
-
+        const data = Array.isArray(response.data.data) ? response.data.data : []; // Pastikan respons memiliki properti data yang berupa array
+  
+        const maleCount = data.filter((item) => item.jenis_kelamin === "L").length;
+        const femaleCount = data.filter((item) => item.jenis_kelamin === "P").length;
+  
         setChartData([maleCount, femaleCount]);
         setLoading(false);
       } catch (error) {
@@ -25,9 +24,10 @@ export default function Home() {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   const chartOptions = {
     chart: {

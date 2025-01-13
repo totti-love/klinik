@@ -17,9 +17,6 @@ const ObatEdit = React.lazy(() => import("./components/Obat/Edit"))
 const KunjunganList = React.lazy(() => import("./components/Kunjungan/List"))
 const KunjunganCreate = React.lazy(() => import("./components/Kunjungan/Create"))
 const KunjunganEdit = React.lazy(() => import("./components/Kunjungan/Edit"))
-const RekamMedisList = React.lazy(() => import("./components/RekamMedis/List"))
-const RekamMedisCreate = React.lazy(() => import("./components/RekamMedis/Create"))
-const RekamMedisEdit = React.lazy(() => import("./components/RekamMedis/Edit"))
 const Login = React.lazy(() => import("./components/Login"));
 
 const App = () => {
@@ -82,11 +79,6 @@ const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil 
                   Obat
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/rekamMedis" className="nav-link">
-                  Rekam Medis
-                </NavLink>
-              </li>
             </ul>
           </div>
         </div>
@@ -96,7 +88,7 @@ const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil 
         <Suspense fallback={<Loader />}>
           {/* Suspense untuk fallback saat loading */}
       <Routes>
-        <Route path="/home" element={<Home />} /> {/* Route ke halaman Home */}
+        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} /> {/* Route ke halaman Home */}
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/logout" element={<Logout />} /> 
         <Route path="/dokter" element={<ProtectedRoute><DokterList /></ProtectedRoute>} />
@@ -111,9 +103,6 @@ const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil 
         <Route path="/obat" element={<ProtectedRoute><ObatList /></ProtectedRoute>} />
         <Route path="/obat/create" element={<ProtectedRoute><ObatCreate /></ProtectedRoute>} />
         <Route path="/obat/edit/:id" element={<ProtectedRoute><ObatEdit /></ProtectedRoute>} />
-        <Route path="/rekamMedis" element={<ProtectedRoute><RekamMedisList /></ProtectedRoute>} />
-        <Route path="/rekamMedis/create" element={<ProtectedRoute><RekamMedisCreate /></ProtectedRoute>} />
-        <Route path="/rekamMedis/edit/:id" element={<ProtectedRoute><RekamMedisEdit /></ProtectedRoute>} />
       </Routes>
       </Suspense>
 
