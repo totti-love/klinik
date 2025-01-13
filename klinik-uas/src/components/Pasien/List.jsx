@@ -50,8 +50,8 @@ export default function List() {
   return (
     <>
       <h2 className="mt-3 mb-3 ms-3">List Data Pasien</h2>
-      <NavLink to="/pasien/create" className="btn btn-primary mb-3 ms-3">
-        Tambah
+      <NavLink to="/pasien/create" className="btn btn-success mb-3 ms-3">
+        + Tambah
       </NavLink>
 
       <table className="table mt-3">

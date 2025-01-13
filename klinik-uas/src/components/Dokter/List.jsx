@@ -49,10 +49,13 @@ export default function List() {
 
   return (
     <>
+      <div className="container mt-4">
+      <div className="d-flex justify-content-between align-items-center mb-3">
       <h2 className="mt-3 mb-3 ms-3">List Data Dokter</h2>
       <NavLink to="/dokter/create" className="btn btn-primary mb-3 ms-3">
-        Tambah
+        + Tambah
       </NavLink>
+      </div>
 
       <table className="table mt-3">
         <thead>
@@ -87,6 +90,7 @@ export default function List() {
           ))}
         </tbody>
       </table>
+      </div>
     </>
   );
 }
