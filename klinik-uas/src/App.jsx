@@ -90,7 +90,7 @@ const [token, setToken] = useState(localStorage.getItem("authToken")); // Ambil 
       <Routes>
         <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} /> {/* Route ke halaman Home */}
         <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/logout" element={<Logout />} /> 
+        <Route path="/logout" element={<ProtectedRoute><Logout /></ProtectedRoute>} /> 
         <Route path="/dokter" element={<ProtectedRoute><DokterList /></ProtectedRoute>} />
         <Route path="/dokter/create" element={<ProtectedRoute><DokterCreate /></ProtectedRoute>} />
         <Route path="/dokter/edit/:id" element={<ProtectedRoute> <DokterEdit /></ProtectedRoute>} />
